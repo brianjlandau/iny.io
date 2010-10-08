@@ -38,7 +38,7 @@ InyIoServer := HttpServer clone do (
 		if (request parameters at("url")) then (
 			url := request  parameters at("url")
 			token := UrlModel create(url)
-			response body appendSeq("http://iny.io/" .. token)
+			response body appendSeq("http://" .. request headers at("HOST") .. "/" .. token)
 		) elseif (request path split("/") at (1) != "") then (
 			token := request path split("/") at (1)
 			redirectUrl := UrlModel find(token)
