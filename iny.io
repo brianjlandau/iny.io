@@ -34,18 +34,18 @@ UrlModel := Object clone do (
 )
 
 InyIoServer := HttpServer clone do (
-	setPort(80)
-	
 	renderResponse := method(request, response,
-		if (parameters at("url")) then (
-			url := parameters at("url")
+		if (request parameters at("url")) then (
+			url := request  parameters at("url")
 			token := UrlModel create(url)
 			response body appendSeq("http://iny.io/" .. token)
-		) elseif (path split("/") at (0)) then (
-			token := path split("/") at (0)
-			url := UrlModel find(token)
-			response addHeader("Location", url)
-			response setStatusCode(301)
+		) elseif (request path split("/") at (1) != "") then (
+			token := request path split("/") at (1)
+			redirectUrl := UrlModel find(token)
+			if (redirectUrl,
+				response addHeader("Location", redirectUrl)
+				response setStatusCode(301)
+			)
 		)
 	)
 )
