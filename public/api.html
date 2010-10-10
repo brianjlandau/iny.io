@@ -21,16 +21,10 @@
     <h1>iny.io</h1>
     
     <div id="main">
-      <form action="/shorten" method="post">
-        <fieldset>
-          <label>URL to Shorten: <input type="text" name="url" id="url-to-shorten" /></label>
-          <input type="submit" name="submit" value="Shorten" id="submit" />
-        </fieldset>
-      </form>
-    </div>
-    
-    <div id="footer">
-      <p><a href="/api.html">API</a></p>
+      <p>You can use the API by doing a GET request to:</p>
+      <pre>http://iny.io/shorten-api?url=[YOUR_URL]</pre>
+      <p>The response will just be the shortened URL as text:</p>
+      <pre>http://iny.io/example</pre>
     </div>
     
   </div> <!-- end of #container -->
