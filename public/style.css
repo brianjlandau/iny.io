@@ -117,6 +117,8 @@ textarea#shortened-url {
 #clippy{
   position: relative;
   top: -9px;
+  margin: 0px;
+  display: inline;
 }
 
 #main form label {
