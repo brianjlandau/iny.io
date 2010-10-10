@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <!--[if IE]><![endif]-->
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  <title>iny.io URL Shortener</title>
+  
+  <link rel="stylesheet" href="/style.css?v=1">
+</head>
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <body class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <body> <!--<![endif]-->
+
+  <div id="container">
+    <h1>iny.io</h1>
+    
+    <div id="main">
+      <h3>Your Short URL:</h3>
+      
+      <textarea name="shortened-url" id="shortened-url" readonly="readonly">#{shortened_url}</textarea>
+      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+                  width="110"
+                  height="14"
+                  id="clippy" >
+          <param name="movie" value="/clippy.swf"/>
+          <param name="allowScriptAccess" value="always" />
+          <param name="quality" value="high" />
+          <param name="scale" value="noscale" />
+          <param NAME="FlashVars" value="text=#{shortened_url}">
+          <param name="bgcolor" value="#FFFFFF">
+          <embed src="/clippy.swf"
+                 width="110"
+                 height="14"
+                 name="clippy"
+                 quality="high"
+                 allowScriptAccess="always"
+                 type="application/x-shockwave-flash"
+                 pluginspage="http://www.macromedia.com/go/getflashplayer"
+                 FlashVars="text=#{shortened_url}"
+                 bgcolor="#FFFFFF" />
+          </object>
+    </div>
+    
+  </div> <!-- end of #container -->
+
+</body>
+</html>
