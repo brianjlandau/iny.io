@@ -1,4 +1,7 @@
 doFile("Iodis.io")
+doFile("extensions.io")
+
+portNumber := System getOptions(System args)["port"]
 
 redisConnection := Iodis clone connect
 
@@ -39,22 +42,25 @@ UrlModel := Object clone do (
 )
 
 InyIoServer := HttpServer clone do (
-	renderResponse := method(request, response,
-		if (request path split("/") at (1) != "") then (
-		   if (request parameters at("url")) then (
-   			url := request  parameters at("url")
+   setPort((portNumber || 8080) asNumber)
+   
+   renderResponse := method(request, response,
+		if (request path split("/")[1] != "") then (
+		   if (request parameters["url"]) then (
+   			url := request  parameters["url"]
    			token := UrlModel create(url)
-   			shortened_url := "http://" .. request headers at("HOST") .. "/" .. token
+   			shortened_url := "http://" .. request headers["HOST"] .. "/" .. token
    			redisConnection @incr("shortened")
-   			if (request path split("/") at (1) == "shorten") then (
+   			if (request path split("/")[1] == "shorten") then (
    			   response addHeader("Content-type", "text/html")
    			   response body appendSeq(shortened_template interpolate)
-   			) elseif (request path split("/") at (1) == "shorten-api") then (
+   			) elseif (request path split("/")[1] == "shorten-api") then (
    			   response addHeader("Content-type", "text/plain")
+   			   response addHeader("Location", shortened_url)
    			   response body appendSeq(shortened_url)
    			)
    		) else (
-   		   token := request path split("/") at (1)
+   		   token := request path split("/")[1]
    			redirectUrl := UrlModel find(token)
    			redisConnection @incr(redirectUrl .. "-redirect-counter")
    			if (redirectUrl,
