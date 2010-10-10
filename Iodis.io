@@ -1,3 +1,7 @@
+# (c) 2010 harry vangberg <harry@vangberg.name>
+# MIT License: http://www.opensource.org/licenses/mit-license.php
+# URL: http://github.com/ichverstehe/iodis
+
 Iodis := Object clone do(
   version   := "0.1"
 
