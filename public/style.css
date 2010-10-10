@@ -63,6 +63,7 @@ button {  width: auto; overflow: visible; }
 .hidden { display:none; visibility:hidden; } 
 .visuallyhidden { position:absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px); }
 .invisible { visibility: hidden; }
+.clear { clear: both;}
 .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 .clearfix { display: inline-block; }
 * html .clearfix { height: 1%; }
@@ -104,6 +105,10 @@ h3 {
   width:  600px;
 }
 
+#url-wrapper > * {
+	float: left;
+}
+
 textarea#shortened-url {
   width: 400px;
   height: 18px;
@@ -116,7 +121,8 @@ textarea#shortened-url {
 
 #clippy{
   position: relative;
-  top: -9px;
+  top: 6px;
+  left: 8px;
   margin: 0px;
   display: inline;
 }
