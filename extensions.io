@@ -1,3 +1,10 @@
+readFile := method(path,
+   fileToRead := File clone openForReading(path)
+   content := fileToRead readToEnd
+   fileToRead close
+   return content
+)
+
 # Pulled from http://iota.flowsnake.org/syntax-extensions.html
 Object squareBrackets := method(
     r := List clone
