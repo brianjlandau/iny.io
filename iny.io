@@ -9,9 +9,8 @@ doFile("InyTemplates.io")
 base_template := InyTemplates clone with("views/layout.html")
 
 shortened_template := File @read("views/shortened.html")
+index_html := File @read("public/index.html")
 invalid_error_html := File @read("views/invalid.html")
-error_html := File @read("public/500.html")
-not_found_html := File @read("public/404.html")
 
 doFile("InyIoServer.io")
 

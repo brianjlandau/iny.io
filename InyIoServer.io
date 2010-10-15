@@ -67,6 +67,11 @@ InyIoServer := HttpServer clone do (
       response body appendSeq(base_template render("Not Found 404", "<p>The page you are looking for can not be found.</p>"))
    )
    
+   indexAction := method(response,
+      response addHeader("Content-type", "text/html")
+      response body appendSeq(index_html)
+   )
+   
    renderResponse := method(request, response,
       exception := try (
         if (request path split("/")[1] and request path split("/")[1] != "") then (
@@ -80,7 +85,7 @@ InyIoServer := HttpServer clone do (
               redirectAction(request, response)
            )
         ) else (
-          notFoundResponse(response)
+          indexAction(response)
         )
       )
       if (exception) then (
