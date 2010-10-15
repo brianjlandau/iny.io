@@ -18,9 +18,9 @@ UrlModel := Object clone do (
 			while (redisConnection exists(token),
 				token = generateToken
 			)
-			redisConnection @@set(token, url)
-			redisConnection @@set(url, token)
-			redisConnection @@sadd("URLs", url)
+			redisConnection @set(token, url)
+			redisConnection @set(url, token)
+			redisConnection @sadd("URLs", url)
 			return token
 		)
 	)

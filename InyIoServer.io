@@ -4,7 +4,7 @@ InyIoServer := HttpServer clone do (
    shortenUrl := method(request,
       token := UrlModel create(request parameters["url"])
       shortened_url := "http://" .. request headers["HOST"] .. "/" .. token
-      redisConnection @@incr("shortened")
+      redisConnection @incr("shortened")
       return shortened_url
    )
    
@@ -41,7 +41,7 @@ InyIoServer := HttpServer clone do (
       token := request path split("/")[1]
       redirectUrl := UrlModel find(token)
       if (redirectUrl) then (
-        redisConnection @@incr(redirectUrl .. "-redirect-counter")
+        redisConnection @incr(redirectUrl .. "-redirect-counter")
         response addHeader("Location", redirectUrl)
         response setStatusCode(301)
       ) else (
