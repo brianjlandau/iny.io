@@ -132,6 +132,7 @@ h3 {
 }
 
 #shortened-url {
+  width: 400px;
   line-height: 18px;
   font-size: 14px;
   font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
