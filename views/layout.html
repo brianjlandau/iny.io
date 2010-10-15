@@ -7,7 +7,7 @@
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   
-  <title>iny.io URL Shortener</title>
+  <title>iny.io URL Shortener - #{title}</title>
   
   <link rel="stylesheet" href="/style.css?v=1.6">
   
@@ -33,20 +33,18 @@
     <h1><a href="/">iny.io</a></h1>
     
     <div id="main">
-      <p>You can use the API by doing a GET request to:</p>
-      <pre>http://iny.io/shorten-api?url=[YOUR_URL]</pre>
-      <p>The response will just be the shortened URL as text:</p>
-      <pre>http://iny.io/example</pre>
+      #{partial}
     </div>
     
     <div id="footer">
       <p>
         <a href="http://github.com/brianjlandau/iny.io">Code</a>
+        <a href="/api.html">API</a>
         <a href="/bookmarklet.html">Bookmarklet</a>
       </p>
     </div>
     
   </div> <!-- end of #container -->
-
+  
 </body>
 </html>

@@ -4,9 +4,14 @@ doFile("url_regex.io")
 portNumber := System getOptions(System args)["port"]
 
 doFile("UrlModel.io")
+doFile("InyTemplates.io")
 
-shortened_template := File @read("shortened.html")
-error_html := File @read("error.html")
+base_template := InyTemplates clone with("views/layout.html")
+
+shortened_template := File @read("views/shortened.html")
+invalid_error_html := File @read("views/invalid.html")
+error_html := File @read("public/500.html")
+not_found_html := File @read("public/404.html")
 
 doFile("InyIoServer.io")
 
