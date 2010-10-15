@@ -1,5 +1,5 @@
-readFile := method(path,
-   fileToRead := File clone openForReading(path)
+File read := method(path,
+   fileToRead := File with(path) openForReading
    content := fileToRead readToEnd
    fileToRead close
    return content
