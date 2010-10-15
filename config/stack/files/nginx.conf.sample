@@ -1,0 +1,66 @@
+user  deploy;
+worker_processes  3;
+
+error_log  /usr/local/nginx/logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+pid        /var/run/nginx.pid;
+
+events {
+   worker_connections  1024;
+}
+
+http {
+   include       /usr/local/nginx/conf/mime.types;
+   default_type  application/octet-stream;
+
+   #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+   #                  '$status $body_bytes_sent "$http_referer" '
+   #                  '"$http_user_agent" "$http_x_forwarded_for"';
+   access_log  /usr/local/nginx/logs/access.log;
+
+   sendfile        on;
+   #keepalive_timeout  0;
+   keepalive_timeout  65;
+   # These are good default values.
+   tcp_nopush        on;
+   tcp_nodelay       off;
+
+   client_max_body_size 50M;
+   client_body_timeout 125;
+
+   gzip  on;
+   gzip_comp_level 3;
+   gzip_http_version 1.0;
+   gzip_proxied any;
+   gzip_types      text/plain text/html text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+   open_file_cache max=1000;
+   open_file_cache_min_uses 3;
+
+   server {
+      listen 80;
+      server_name iny.io;
+      root /var/www/iny.io/current/public;
+      index  index.html;
+      access_log  /usr/local/nginx/logs/iny.io.access.log;
+      
+      proxy_set_header Host $host;
+
+      location / {
+         if (-f $request_filename) {
+            break; 
+         }
+
+         if (-f $request_filename/index.html) {
+            rewrite (.*) $1/index.html break;
+         }
+
+         if (!-f $request_filename) {
+            proxy_pass http://127.0.0.1:8080;
+            break;
+         }
+      }
+   }
+}

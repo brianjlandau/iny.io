@@ -1,4 +1,4 @@
 iny.io
 =========
 
-just a very tiny URL shortener written in Io for HTTP.
+Just a very tiny URL shortener web app written in Io.
