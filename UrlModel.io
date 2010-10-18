@@ -1,6 +1,6 @@
 doFile("Iodis.io")
 
-InyioRedisConnection : = Object clone do (
+InyioRedisConnection := Object clone do (
   getConnection := method(
       Iodis clone connect
   )
